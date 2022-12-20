@@ -67,6 +67,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::delete('/{post}/delete', 'PostsController@destroy')->name('posts.destroy');
         });
 
+        /**
+         * Apps Routes
+         */
+        Route::group(['prefix' => 'apps'], function() {
+            Route::get('/', 'AppController@index')->name('apps.index');
+        });
+
         Route::resource('roles', RolesController::class);
         Route::resource('permissions', PermissionsController::class);
     });

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>TK8 Admin</title>
+    <title>Magnus</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet" />
     <link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
     <link href="{{url('')}}/sleek/source/assets/plugins/simplebar/simplebar.css" rel="stylesheet" />
@@ -41,12 +41,33 @@
                   <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
                 </g>
               </svg>
-              <span class="brand-name text-truncate">Laravel 8 Admin</span>
+              <span class="brand-name text-truncate">MAGNUS</span>
             </a>
           </div>
 
           <div class="" data-simplebar style="height: 100%;">
             <ul class="nav sidebar-inner" id="sidebar-menu">
+
+              <li class="has-sub @yield('activeapps') @yield('expandapps')">
+                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#apps" aria-expanded="false" aria-controls="apps">
+                  <i class="mdi mdi-apps"></i>
+                  <span class="nav-text">Applications</span> <b class="caret"></b>
+                </a>
+                <ul class="collapse @yield('showapps')" id="apps" data-parent="#sidebar-menu">
+                  <div class="sub-menu">
+                    <li class="@yield('listapps')">
+                      <a class="sidenav-item-link" href="{{url('apps')}}">
+                        <span class="nav-text">List Apps</span>
+                      </a>
+                    </li>
+                    <li class="@yield('addapps')">
+                      <a class="sidenav-item-link" href="{{url('apps/create')}}">
+                        <span class="nav-text">Add New Apps</span>
+                      </a>
+                    </li>
+                  </div>
+                </ul>
+              </li>
 
               <li class="has-sub @yield('activeuser') @yield('expanduser')">
                 <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#users" aria-expanded="false" aria-controls="users">
@@ -56,12 +77,12 @@
                 <ul class="collapse @yield('showuser')" id="users" data-parent="#sidebar-menu">
                   <div class="sub-menu">
                     <li class="@yield('listuser')">
-                      <a class="sidenav-item-link" href="{{ url('users') }}">
+                      <a class="sidenav-item-link" href="{{url('users')}}">
                         <span class="nav-text">List Users</span>
                       </a>
                     </li>
                     <li class="@yield('adduser')">
-                      <a class="sidenav-item-link" href="{{ url('users/create') }}">
+                      <a class="sidenav-item-link" href="{{url('users/create')}}">
                         <span class="nav-text">Add New User</span>
                       </a>
                     </li>
@@ -187,7 +208,8 @@
       </div> 
     </div>
 
-    <script src="{{url('')}}/sleek/theme/assets/plugins/jquery/jquery.min.js"></script>
+    {{-- <script src="{{url('')}}/sleek/theme/assets/plugins/jquery/jquery.min.js"></script> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="{{url('')}}/sleek/theme/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="{{url('')}}/sleek/source/assets/plugins/simplebar/simplebar.min.js"></script>
     <script src="{{url('')}}/sleek/theme/assets/js/sleek.js"></script>
