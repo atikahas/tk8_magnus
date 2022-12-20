@@ -72,6 +72,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          */
         Route::group(['prefix' => 'apps'], function() {
             Route::get('/', 'AppController@index')->name('apps.index');
+            Route::get('/create', 'AppController@create')->name('apps.create');
+            Route::post('/create', 'AppController@store')->name('apps.store');
         });
 
         Route::resource('roles', RolesController::class);

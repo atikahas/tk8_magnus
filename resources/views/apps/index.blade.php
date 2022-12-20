@@ -8,6 +8,13 @@
     <link href="{{url('')}}/sleek/source/assets/plugins/data-tables/datatables.bootstrap4.min.css" rel="stylesheet">
     <link href="{{url('')}}/sleek/source/assets/plugins/data-tables/responsive.datatables.min.css" rel="stylesheet">
     <link href="https://unpkg.com/sleek-dashboard/dist/assets/css/sleek.min.css">
+
+    <style>
+        .card__exit {
+  grid-row: 1/2;
+  justify-self: end;
+}
+    </style>
 @endsection
 
 
@@ -19,7 +26,7 @@
                 <li class="breadcrumb-item">
                     <a href="{{ url('/') }}"><span class="mdi mdi-home"></span></a>
                 </li>
-                <li class="breadcrumb-item">users</li>
+                <li class="breadcrumb-item">applications</li>
                 <li class="breadcrumb-item" aria-current="page">list applications</li>
             </ol>
         </nav>
@@ -37,16 +44,27 @@
         </ul>
         <br>
   
-        <div class="tab-content px-3 px-xl-5" id="myTabContent">
+        <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="tab-widget mt-5">
                     <div class="row">
                         @foreach($app as $a)
                         <div class="col-md-6 col-xl-3">
                             <div class="card mb-4">
-                                <img class="card-img-top" src="https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png">
-        
+                                {{-- <img class="card-img-top" src="https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png"> --}}
+                                <img class="card-img-top" src="{{url('storage/apps_image/'.$a->image)}}">
                                 <div class="card-body" style="padding:10px; height:80px">
+                                    <div class="dropdown float-right">
+                                        <button class="float-right " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                            <i class="mdi mdi-drag-vertical"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="{{ $a->url }}" target=_blank>View</a>
+                                            <a class="dropdown-item" href="#">Edit</a>
+                                            <a class="dropdown-item" href="#">Delete</a>
+                                        </div>
+                                    </div>
+                                    {{-- <p class="float-right"><i class="mdi mdi-drag-vertical"></i></p> --}}
                                     <h5 class="card-title text-primary" style="margin:0px"><a href="{{ $a->url }}" target=_blank>{{ $a->name }}</a></h5>
                                 </div>
                             </div>
@@ -61,28 +79,32 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                @foreach($app as $a)
-                                <li class="list-group-item text-dark"><a href="{{ $a->url }}" target=_blank>{{ $a->name }}</a></li>
-                                @endforeach
-                            </div>
-                        </div>
-
+                                <div class="card-body">
                         <table id="app-table" class="table dt-responsive table-hover nowrap" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th width="1%">#</th>
-                                    <th>Apps Name</th>
+                                    <th></th>
+                                    <th>Applications Name</th>
+                                    <th>Option</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($app as $a)
                                     <tr>
-                                        <td>#</td>
-                                        <td><a href="{{ $a->url }}" target=_blank>{{ $a->name }}</a></td>
+                                        <td width="1%">#</td>
+                                        <td width="89%"><a href="{{ $a->url }}" target=_blank>{{ $a->name }}</a></td>
+                                        <td width="10%">
+                                            <a class="btn btn-sm btn-primary" href="{{ $a->url }}" target=_blank><i class="mdi mdi-eye"></i></a>
+                                            <a class="btn btn-sm btn-secondary" href="#"><i class="mdi mdi-square-edit-outline"></i></a>
+                                            <a class="btn btn-sm btn-danger" href="#"><i class="mdi mdi-trash-can-outline"></i></a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
