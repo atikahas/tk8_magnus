@@ -19,6 +19,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
      * Home Routes
      */
     Route::get('/', 'HomeController@index')->name('home.index');
+    Route::get('search', 'HomeController@search');
 
     Route::group(['middleware' => ['guest']], function() {
         /**
@@ -74,6 +75,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::get('/', 'AppController@index')->name('apps.index');
             Route::get('/create', 'AppController@create')->name('apps.create');
             Route::post('/create', 'AppController@store')->name('apps.store');
+            Route::get('/{app}/edit/', 'AppController@edit')->name('apps.edit');
+            Route::patch('/{app}/update', 'AppController@update')->name('apps.update');
         });
 
         Route::resource('roles', RolesController::class);

@@ -51,7 +51,6 @@
                         @foreach($app as $a)
                         <div class="col-md-6 col-xl-3">
                             <div class="card mb-4">
-                                {{-- <img class="card-img-top" src="https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png"> --}}
                                 <img class="card-img-top" src="{{url('storage/apps_image/'.$a->image)}}">
                                 <div class="card-body" style="padding:10px; height:80px">
                                     <div class="dropdown float-right">
@@ -60,11 +59,10 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item" href="{{ $a->url }}" target=_blank>View</a>
-                                            <a class="dropdown-item" href="#">Edit</a>
+                                            <a class="dropdown-item" href="{{ route('apps.edit', $a->id) }}">Edit</a>
                                             <a class="dropdown-item" href="#">Delete</a>
                                         </div>
                                     </div>
-                                    {{-- <p class="float-right"><i class="mdi mdi-drag-vertical"></i></p> --}}
                                     <h5 class="card-title text-primary" style="margin:0px"><a href="{{ $a->url }}" target=_blank>{{ $a->name }}</a></h5>
                                 </div>
                             </div>
@@ -95,7 +93,7 @@
                                         <td width="89%"><a href="{{ $a->url }}" target=_blank>{{ $a->name }}</a></td>
                                         <td width="10%">
                                             <a class="btn btn-sm btn-primary" href="{{ $a->url }}" target=_blank><i class="mdi mdi-eye"></i></a>
-                                            <a class="btn btn-sm btn-secondary" href="#"><i class="mdi mdi-square-edit-outline"></i></a>
+                                            <a class="btn btn-sm btn-secondary" href="{{ route('apps.edit', $a->id) }}"><i class="mdi mdi-square-edit-outline"></i></a>
                                             <a class="btn btn-sm btn-danger" href="#"><i class="mdi mdi-trash-can-outline"></i></a>
                                         </td>
                                     </tr>

@@ -23,7 +23,7 @@ class AppController extends Controller
     public function store(Request $request)
     {   
         $data = $request->except(['_token']);
-        $data['user_id'] = Auth::user()->id;
+        $data['created_by'] = Auth::user()->id;
 
         if($request->has('image')) {
             $image = $request->file('image');
@@ -36,5 +36,26 @@ class AppController extends Controller
         $app = App::create($data);
 
         return redirect()->route('apps.index')->withSuccess(__('Application added successfully.'));
+    }
+
+    public function edit(App $app)
+    {
+        return view('apps.edit', ['app' => $app]);
+    }
+
+    public function update(Request $request, App $app)
+    {
+        $data = $request->except(['_token']);
+        $data['updated_by'] = Auth::user()->id;
+        if($request->has('image')) {
+            $image = $request->file('image');
+            $image_name = uniqid().'_'.$image->getClientOriginalName();
+            $image->storeAs('public/apps_image/', $image_name);
+
+            $data['image'] = $image_name;
+        }
+        $app->update($data);
+
+        return redirect()->route('apps.index')->withSuccess(__('Application updated successfully.'));
     }
 }

@@ -26,28 +26,30 @@
                                             <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
                                         </g>
                                     </svg>
-                                    <span class="brand-name">Laravel 8 Admin</span>
+                                    <span class="brand-name">Magnus</span>
                                 </a>
                             </div>
                         </div>
 
                         <div class="card-body p-5">
-                            <h4 class="text-dark mb-5">Sign In</h4>
+                            <h4 class="text-dark mb-3">Sign In</h4>
+                            @if ($errors->has('username'))
+                            <div class="alert alert-dismissible fade show alert-danger" role="alert" style="padding:4px">
+                                <small>Incorrect email/username or password.</small>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding:4px">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            @endif
                             <form method="post" action="{{ route('login.perform') }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                 <div class="row">
                                     <div class="form-group col-md-12 mb-4">
-                                        <input type="text" class="form-control input-lg" id="email" name="username" value="{{ old('username') }}" placeholder="Username" required="required" autofocus>
-                                        @if ($errors->has('username'))
-                                        <span class="text-danger text-left">{{ $errors->first('username') }}</span>
-                                        @endif
+                                        <input type="text" class="form-control input-lg @if($errors->has('username')) is-invalid @endif" id="email" name="username" value="{{ old('username') }}" placeholder="Username" required="required" autofocus>
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        <input type="password" class="form-control input-lg" name="password" value="{{ old('password') }}" placeholder="Password" required="required" autocomplete="on">
-                                        @if ($errors->has('password'))
-                                        <span class="text-danger text-left">{{ $errors->first('password') }}</span>
-                                        @endif
+                                        <input type="password" class="form-control input-lg @if($errors->has('password')) is-invalid @endif" name="password" value="{{ old('password') }}" placeholder="Password" required="required" autocomplete="on">
                                     </div>
 
                                     <div class="col-md-12">

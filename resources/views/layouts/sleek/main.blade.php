@@ -20,6 +20,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="{{url('')}}/sleek/theme/assets/plugins/nprogress/nprogress.js"></script>
+    <link href="{{url('')}}/sleek/theme/assets/plugins/toastr/toastr.min.css" rel="stylesheet">
     @yield('scriptheader')
   </head>
 
@@ -144,10 +145,6 @@
             <button id="sidebar-toggler" class="sidebar-toggle"><span class="sr-only">Toggle navigation</span></button>
             
             <div class="search-form d-none d-lg-inline-block">
-              <div class="input-group">
-                <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="mdi mdi-magnify"></i></button>
-                <input type="text" name="query" id="search-input" class="form-control" placeholder="'button', 'chart' etc." autofocus autocomplete="off" />
-              </div>
               <div id="search-results-container">
                 <ul id="search-results"></ul>
               </div>
@@ -214,6 +211,15 @@
     <script src="{{url('')}}/sleek/source/assets/plugins/simplebar/simplebar.min.js"></script>
     <script src="{{url('')}}/sleek/theme/assets/js/sleek.js"></script>
     <link href="{{url('')}}/sleek/source/assets/options/optionswitch.css" rel="stylesheet">
+    <script src='{{url('')}}/sleek/theme/assets/plugins/toastr/toastr.min.js'></script>
+    <script>
+      @if(Session('success'))
+      toastr.success("{{Session('success')}}");
+      @endif
+      @if(Session('error'))
+      toastr.danger("{{Session('error')}}");
+      @endif
+    </script>
     @yield('scriptfooter')
   </body>
 </html>
