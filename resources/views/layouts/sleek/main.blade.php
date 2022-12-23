@@ -35,7 +35,7 @@
       <aside class="left-sidebar bg-sidebar">
         <div id="sidebar" class="sidebar sidebar-with-footer">
           <div class="app-brand">
-            <a href="/index.html" title="Sleek Dashboard">
+            <a href="{{ route('apps.index') }}" title="Sleek Dashboard">
               <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30" height="33" viewBox="0 0 30 33">
                 <g fill="none" fill-rule="evenodd">
                   <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z" />
