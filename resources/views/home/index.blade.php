@@ -26,13 +26,13 @@
                                             <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
                                         </g>
                                     </svg>
-                                    <span class="brand-name">Laravel 8 Admin</span>
+                                    <span class="brand-name">Magnus</span>
                                 </a>
                             </div>
                         </div>
 
                         <div class="card-body p-5">
-                            <h4 class="text-dark mb-5">Sign In</h4>
+                            <h4 class="text-dark mb-3">Sign In</h4>
                             <form method="post" action="{{ route('login.perform') }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                 <div class="row">

@@ -60,7 +60,7 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item" href="{{ $a->url }}" target=_blank>View</a>
                                             <a class="dropdown-item" href="{{ route('apps.edit', $a->id) }}">Edit</a>
-                                            <a class="dropdown-item" href="#">Delete</a>
+                                            <button class="dropdown-item" onclick="deleteApp('{{$a->id}}')">Delete</button> 
                                         </div>
                                     </div>
                                     <h5 class="card-title text-primary" style="margin:0px"><a href="{{ $a->url }}" target=_blank>{{ $a->name }}</a></h5>
@@ -94,7 +94,7 @@
                                         <td width="10%">
                                             <a class="btn btn-sm btn-primary" href="{{ $a->url }}" target=_blank><i class="mdi mdi-eye"></i></a>
                                             <a class="btn btn-sm btn-secondary" href="{{ route('apps.edit', $a->id) }}"><i class="mdi mdi-square-edit-outline"></i></a>
-                                            <a class="btn btn-sm btn-danger" href="#"><i class="mdi mdi-trash-can-outline"></i></a>
+                                            <button class="btn btn-sm btn-danger" onclick="deleteApp('{{$a->id}}')"><i class="mdi mdi-trash-can-outline"></i></button> 
                                         </td>
                                     </tr>
                                 @endforeach
@@ -119,5 +119,26 @@
     <script src="{{url('')}}/sleek/source/assets/plugins/data-tables/jquery.datatables.min.js"></script>
     <script src="{{url('')}}/sleek/source/assets/plugins/data-tables/datatables.bootstrap4.min.js"></script>
     <script src="{{url('')}}/sleek/source/assets/plugins/data-tables/datatables.responsive.min.js"></script>
+    <script>
+        function deleteApp(id) {
+            var r = confirm("Are you sure want to delete this application?");
+            if(r) {
+                $.ajax({
+                    url:  "{{url('')}}/apps/delete/" + id,
+                    type: "POST",
+                    data: "_token={{csrf_token()}}",
+                    success: function(response) {
+                        if(response.status == 'success') {
+                            toastr.success(response.message);
+                            location.reload();
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+            }
+        }
+    </script>
 @endsection
 

@@ -58,4 +58,17 @@ class AppController extends Controller
 
         return redirect()->route('apps.index')->withSuccess(__('Application updated successfully.'));
     }
+
+    public function destroy(App $app)
+    {
+        // $app->delete();
+        // return redirect()->route('apps.index')->withSuccess(__('Application deleted successfully.'));
+
+        try {
+            $app->delete();
+            return response()->json(['status' => 'success', 'message' => 'Application deleted successfully.']);
+        } catch(\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+    }
 }

@@ -36,7 +36,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
     });
 
-    Route::group(['middleware' => ['auth', 'permission']], function() {
+   // Route::group(['middleware' => ['auth', 'permission']], function() {
+    Route::group(['middleware' => ['auth']], function() {
         /**
          * Logout Routes
          */
@@ -77,6 +78,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::post('/create', 'AppController@store')->name('apps.store');
             Route::get('/{app}/edit/', 'AppController@edit')->name('apps.edit');
             Route::patch('/{app}/update', 'AppController@update')->name('apps.update');
+            Route::post('/delete/{app}', 'AppController@destroy')->name('apps.destroy');
         });
 
         Route::resource('roles', RolesController::class);
